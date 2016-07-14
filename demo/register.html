@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>HTML5 Login</title>
+	<link rel="stylesheet" href="normalize.css">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+
+    
+
+
+    <script>
+function loadXMLDoc() {
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function() {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+      myFunction(xmlhttp);
+    }
+  };
+  xmlhttp.open("GET", "books.xml", true);
+  xmlhttp.send();
+}
+
+function myFunction(xml) {
+  var x, i, xmlDoc, txt;
+  xmlDoc = xml.responseXML;
+  txt = "";
+  x = xmlDoc.getElementsByTagName("UserName");
+  for (i = 0; i< x.length; i++) {
+    txt += x[i].childNodes[0].nodeValue +" rod " +"<br>";
+  }
+  document.getElementById("demo").innerHTML = txt;
+}
+    </script>
+
+
+
+	<section class="loginform cf">
+		<form name="login" action="index_submit" method="get" accept-charset="utf-8">
+			<ul>
+				<li>
+					<label for="usermail">Email</label>
+					<input type="email" name="usermail" placeholder="yourname@email.com" required>
+				</li>
+				<li>
+					<label for="password">Password</label>
+					<input type="password" name="password" placeholder="password" required></li>
+                <li>
+                    <label for="First Name">First Name</label>
+                    <input type="text" name="FirstName" placeholder="fName" required>
+                </li>
+                <li>
+                    <label for="Last Name">Last Name</label>
+                    <input type="text" name="LastName" placeholder="lName" required>
+                </li>
+				
+                <li>
+                    <input type="submit" value="Done">
+                </li>
+                <li><button type="button" onclick="loadXMLDoc()">
+    Get my CD collection
+</button>
+</li>
+                
+			</ul>
+           
+		</form>
+	</section>
+    <button type="button" onclick="loadXMLDoc()">
+        Get my CD collection
+    </button>
+    <p id="demo">Hello!</p>
+</body>
+</html>
